@@ -14,10 +14,10 @@ import (
 )
 
 var (
-	cfg    string
+	cfgPath    string
 	file   string
-	path   string
-	cover  string
+	modelPath   string
+	replace  string
 	db     string
 	tables string
 )
@@ -30,16 +30,17 @@ func main() {
 }
 
 func flagParse() {
-	flag.StringVar(&cfg, "cfg", "configs/", "指定要使用的配置文件路径")
+	flag.StringVar(&cfgPath, "c", "configs/", "指定要使用的配置文件路径")
 	flag.StringVar(&file, "f", "dev", "指定要使用的配置文件名")
-	flag.StringVar(&path, "p", "./models/", "指定要生成的model路径")
-	flag.StringVar(&cover, "c", "n", "是否替换, y|n")
+	flag.StringVar(&modelPath, "m", "./models/", "指定要生成的model路径")
+	flag.StringVar(&replace, "r", "n", "是否替换, 默认n，可选y|n")
 	flag.StringVar(&db, "d", "", "数据库名,不填则按配置文件来")
-	if strings.ToLower(cover) != "n" && strings.ToLower(cover) != "y" {
-		cover = "n"
+	flag.StringVar(&tables, "t", "", "表名,多个表用英文半角,隔开")
+	if strings.ToLower(replace) != "n" && strings.ToLower(replace) != "y" {
+		replace = "n"
 	}
 	flag.Parse()
-	configs.Init(cfg, file)
+	configs.Init(cfgPath, file)
 	if db != "" {
 		configs.Conf.Database.DBName = db
 	}
@@ -47,17 +48,17 @@ func flagParse() {
 		configs.Conf.Database.Tables = strings.Split(tables, ",")
 	}
 	//生成model的文件夹
-	ModelPath = path
+	ModelPath = modelPath
 	//判断生成model的文件夹是否存在，不存在则递归创建
-	_, err := os.Stat(path)
+	_, err := os.Stat(modelPath)
 	if os.IsNotExist(err) {
-		err := os.MkdirAll(path, 0777)
+		err := os.MkdirAll(modelPath, 0777)
 		if err != nil {
 			fmt.Printf("model目录不存在")
 		}
 	}
 	//是否覆盖生成
-	ModelReplace = cover
+	ModelReplace = replace
 }
 
 func setupDb() {
