@@ -4,6 +4,7 @@
 用于生产go mysql的model文件，不限框架都可以生成
 
 #### 使用说明
+go run main.go 加上以下参数或者不加
 
   -cfg string
         指定要使用的配置文件路径 (default "configs/")  
