@@ -1,7 +1,7 @@
 # generate-models
 
 #### 介绍
-用于生产go mysql的model文件，不限框架都可以生成
+用于生成go mysql的model文件，不限框架都可以生成
 
 #### 使用说明
 go run main.go 加上以下参数或者不加
