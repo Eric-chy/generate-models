@@ -1,4 +1,4 @@
-module sqlStruct
+module generate-models
 
 go 1.14
 

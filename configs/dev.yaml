@@ -1,0 +1,14 @@
+Database:
+  DBType: mysql
+  Protocol: tcp
+  Username: root  # 填写你的数据库账号
+  Password: 123456  # 填写你的数据库密码
+  Host: 127.0.0.1
+  Port: 3306
+  DBName: laravel
+  TablePrefix:
+  Charset: utf8
+  ParseTime: True
+  MaxIdleConns: 10
+  MaxOpenConns: 30
+  MaxLifetime: 100
