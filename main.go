@@ -31,31 +31,13 @@ func main() {
 
 func flagParse() {
 	flag.StringVar(&cfg, "cfg", "configs/", "指定要使用的配置文件路径")
-	flag.StringVar(&file, "file", "dev", "指定要使用的配置文件名")
-	flag.StringVar(&path, "path", "./models/", "指定要生成的model路径")
-	flag.StringVar(&cover, "cover", "n", "是否替换")
-	flag.StringVar(&db, "db", "", "数据库名")
-	flag.StringVar(&tables, "tables", "", "表名")
-
-	if file == "dev" {
-		flag.StringVar(&file, "f", "dev", "指定要使用的配置文件名")
-	}
-	if path == "./models/" {
-		flag.StringVar(&path, "p", "./models/", "指定要生成的model路径")
-	}
-	if cover == "n" {
-		flag.StringVar(&cover, "c", "n", "是否替换")
-	}
+	flag.StringVar(&file, "f", "dev", "指定要使用的配置文件名")
+	flag.StringVar(&path, "p", "./models/", "指定要生成的model路径")
+	flag.StringVar(&cover, "c", "n", "是否替换, y|n")
+	flag.StringVar(&db, "d", "", "数据库名,不填则按配置文件来")
 	if strings.ToLower(cover) != "n" && strings.ToLower(cover) != "y" {
 		cover = "n"
 	}
-	if db == "" {
-		flag.StringVar(&db, "d", "", "数据库名,不填则按配置文件来")
-	}
-	if tables == "" {
-		flag.StringVar(&tables, "t", "", "表名，多个使用,分割，不填则默认数据库下所有表")
-	}
-
 	flag.Parse()
 	configs.Init(cfg, file)
 	if db != "" {
