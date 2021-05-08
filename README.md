@@ -1,7 +1,7 @@
 # generate-models
 
 #### 介绍
-用于生成go mysql的model文件，不限框架都可以生成，如果使用gin开发接口，可以参考另外一个仓库https://github.com/Eric-chy/gin-api   包含redis，es，rabbitmq，mongo，jwt，上传，发邮件，jaeger，sentry，组件齐全
+用于生成go mysql的model文件，不限框架都可以生成，如果使用gin开发接口，可以参考另外一个仓库https://github.com/Eric-chy/generate-models   包含redis，es，rabbitmq，mongo，jwt，上传，发邮件，jaeger，sentry，组件齐全
 
 #### 使用说明
 go run main.go 加上以下参数或者不加
